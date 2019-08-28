@@ -1,0 +1,107 @@
+TITLE INIZIALIZZAZIONE COMPILAZIONE LIBRERIE.a
+@echo off
+MODE CON COLS=132 LINES=30
+COLOR 1F
+:START
+@echo.
+@echo --------------------------------------------------------------------------
+@echo    Carlo Sala v.1  --- Compilazione  librerie.a - Inserimento dati --
+@echo --------------------------------------------------------------------------
+@echo.
+@echo ATTENZIONE BISOGNA PRIMA AVER COMPILATO CON CPxSQ4a ...
+@echo.
+@echo Inserire il percorso di wxSqlite3 ad esempio 
+SET /P WXSQL= :"C:\wxsqlite3-3.2.1" + Invio per confermare ... 
+@echo.
+@echo Inserire il percorso del compilatore 32 bit ad esempio: "C:\TDM-GCC-32\bin"
+SET /P COMP32= oppure "n" se non installato + Invio ... 
+@echo.
+@echo Inserire il percorso del compilatore 64 bit ad esempio: "C:\TDM-GCC-64\bin"
+SET /P COMP64=  oppure "n" se non installato + Invio per confermare ... 
+@echo -------------------------------------------------------------------------
+SET PATH1=%PATH%
+SET WXPP=%WXSQL%\sqlite3secure\bin-gcc
+SET DEF=%WXSQL%\sqlite3secure\src
+
+SET DLL=%WXPP%\dll
+SET DLLDEBUG=%DLL%\debug
+SET DLLRELEASE=%DLL%\release
+
+SET LIB=%WXPP%\lib
+SET LIBDEBUG=%LIB%\debug
+SET LIBRELEASE=%LIB%\release
+
+SET OUTDLL32=%WXSQL%\lib\gcc_dll
+SET OUTLIB32=%WXSQL%\lib\gcc_lib
+SET OUTLIB32DLL=%WXSQL%\lib\gcc_lib_wxdll
+SET OUTDLL64=%WXSQL%\lib\gcc_x64_dll
+SET OUTLIB64=%WXSQL%\lib\gcc_x64_lib
+SET OUTLIB64DLL=%WXSQL%\lib\gcc_x64_lib_wxdll
+
+CLS
+@echo on
+:MENU
+TITLE COMPILAZIONE WXSQLITE3
+SET INPUT=7
+SET RES32=-F pe-i386
+SET INPUT1=7
+CLS
+@echo.
+@echo --------------------------------------------------------------------------
+@echo    Carlo Sala v.1  ---           Compilazione  wxsqlite         ---
+@echo --------------------------------------------------------------------------
+@echo.
+@echo.
+@echo  1) Compila libreria 32           2) Compila libreria 64
+@echo.
+@echo.
+@echo --------------------------------------------------------------------------
+@echo.
+@echo E' sconsigliabile interrompere la procedura.
+@echo Bisogna poi ricordarsi le scelte fatte ad ogni passaggio.
+@echo.
+@echo off
+SET /P INPUT= SCELTA o "0" PER USCIRE o "10" PER TORNARE ALL'INIZIO: 
+SET /P INPUT1= RIPETI SCELTA:
+if %INPUT% == %INPUT1% GOTO VAI
+GOTO MENU
+:VAI
+CLS
+if %INPUT% ==  0 ( EXIT ) 
+if %INPUT% == 10 ( GOTO START )
+if %INPUT% ==  1 ( GOTO 32A )
+if %INPUT% ==  2 ( GOTO 64A )
+
+GOTO MENU
+
+:32A
+if %COMP32% == n GOTO MENU
+set PATH=%COMP32%;%PATH1%
+@echo ATTENDI!
+CD /d %OUTDLL32%
+dlltool --as-flags=--32 -m i386 --def %DEF%\sqlite3.def --output-lib libsqlite3u.a --dllname %DLLRELEASE%\sqlite3.dll
+dlltool --as-flags=--32 -m i386 --def %DEF%\sqlite3.def --output-lib libsqlite3ud.a --dllname %DLLDEBUG%\sqlite3.dll
+CD /d %OUTLIB32%
+dlltool --as-flags=--32 -m i386 --def %DEF%\sqlite3.def --output-lib libsqlite3u.a --dllname %DLLRELEASE%\sqlite3.dll
+dlltool --as-flags=--32 -m i386 --def %DEF%\sqlite3.def --output-lib libsqlite3ud.a --dllname %DLLDEBUG%\sqlite3.dll
+CD /d %OUTLIB32DLL%
+dlltool --as-flags=--32 -m i386 --def %DEF%\sqlite3.def --output-lib libsqlite3u.a --dllname %DLLRELEASE%\sqlite3.dll
+dlltool --as-flags=--32 -m i386 --def %DEF%\sqlite3.def --output-lib libsqlite3ud.a --dllname %DLLDEBUG%\sqlite3.dll
+pause
+GOTO MENU
+
+:64A
+if %COMP64% == n GOTO MENU
+set PATH=%COMP64%;%PATH1%
+@echo ATTENDI!
+CD /d %OUTDLL64%
+dlltool --as-flags=--64 --def %DEF%\sqlite3.def --output-lib libsqlite3u.a --dllname %DLLRELEASE%\sqlite3_x64.dll
+dlltool --as-flags=--64 --def %DEF%\sqlite3.def --output-lib libsqlite3ud.a --dllname %DLLDEBUG%\sqlite3_x64.dll
+CD /d %OUTLIB64%
+dlltool --as-flags=--64 --def %DEF%\sqlite3.def --output-lib libsqlite3u.a --dllname %DLLRELEASE%\sqlite3_x64.dll
+dlltool --as-flags=--64 --def %DEF%\sqlite3.def --output-lib libsqlite3ud.a --dllname %DLLDEBUG%\sqlite3_x64.dll
+CD /d %OUTLIB64DLL%
+dlltool --as-flags=--64 --def %DEF%\sqlite3.def --output-lib libsqlite3u.a --dllname %DLLRELEASE%\sqlite3_x64.dll
+dlltool --as-flags=--64 --def %DEF%\sqlite3.def --output-lib libsqlite3ud.a --dllname %DLLDEBUG%\sqlite3_x64.dll
+pause
+GOTO MENU
