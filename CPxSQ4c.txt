@@ -87,6 +87,10 @@ dlltool --as-flags=--32 -m i386 --def %DEF%\sqlite3.def --output-lib libsqlite3u
 CD /d %OUTLIB32DLL%
 dlltool --as-flags=--32 -m i386 --def %DEF%\sqlite3.def --output-lib libsqlite3u.a --dllname %DLLRELEASE%\sqlite3.dll
 dlltool --as-flags=--32 -m i386 --def %DEF%\sqlite3.def --output-lib libsqlite3ud.a --dllname %DLLDEBUG%\sqlite3.dll
+copy /y %DLLRELEASE%\sqlite3.dll %OUTDLL32%\
+cd %OUTDLL32%
+md debug
+copy /y %DLLDEBUG%\sqlite3.dll %OUTDLL32%\debug\
 pause
 GOTO MENU
 
@@ -103,5 +107,9 @@ dlltool --as-flags=--64 --def %DEF%\sqlite3.def --output-lib libsqlite3ud.a --dl
 CD /d %OUTLIB64DLL%
 dlltool --as-flags=--64 --def %DEF%\sqlite3.def --output-lib libsqlite3u.a --dllname %DLLRELEASE%\sqlite3_x64.dll
 dlltool --as-flags=--64 --def %DEF%\sqlite3.def --output-lib libsqlite3ud.a --dllname %DLLDEBUG%\sqlite3_x64.dll
+copy /y %DLLRELEASE%\sqlite3_x64.dll %OUTDLL64%\
+cd %OUTDLL64%
+md debug
+copy /y %DLLDEBUG%\sqlite3_x64.dll %OUTDLL64%\debug\
 pause
 GOTO MENU
