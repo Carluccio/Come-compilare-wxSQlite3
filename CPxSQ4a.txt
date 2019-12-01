@@ -11,20 +11,20 @@ COLOR 1F
 @echo ATTENZIONE BISOGNA PRIMA AVER COMPILATO LE WXWIDGETS ...
 @echo.
 @echo Inserire la cartella in cui si trova il file "makefile" ad esempio 
-SET /P VERSION1= :"build" + Invio per confermare ...
+SET /P VERSION1= "build" + Invio per confermare ...: 
 @echo.
 @echo Inserire il percorso di wxSqlite3 ad esempio 
-SET /P WXSQL= :"C:\wxsqlite3-3.2.1" + Invio per confermare ... 
+SET /P WXSQL= "C:\wxsqlite3-4.4.3" + Invio per confermare ...:  
 @echo.
-@echo Inserire il percorso del compilatore 32 bit ad esempio: "C:\TDM-GCC-32\bin"
-SET /P COMP32= oppure "n" se non installato + Invio ... 
+@echo Inserire il percorso del compilatore 32 bit ad esempio: "C:\TDM-GCC-32\bin" o "C:\mingw32\bin" o "C:\mingw64\bin"
+SET /P COMP32= oppure "n" se non installato + Invio ...: 
 @echo.
-@echo Inserire il percorso del compilatore 64 bit ad esempio: "C:\TDM-GCC-64\bin"
-SET /P COMP64=  oppure "n" se non installato + Invio per confermare ... 
+@echo Inserire il percorso del compilatore 64 bit ad esempio: "C:\TDM-GCC-64\bin" o "C:\mingw64\bin"
+SET /P COMP64= oppure "n" se non installato + Invio per confermare ...:  
 @echo.
-@echo Inserire CXXFLAGS ad esempio: "-fno-keep-inline-dllexport" -std=gnu++11 e/o: -std=gnu++14
-@echo Se per compilare wxWidgets (3.x), usi TDM-GCC, bisogna qui aggiungere: "-fno-keep-inline-dllexport -std=gnu++11"
-SET /P FLAGS=   oppure spazio vuoto + Invio per confermare ...
+@echo Inserire CXXFLAGS ad esempio: -std=c++11 e/o: -std=c++14
+@echo Se per compilare wxWidgets (3.x), usi TDM-GCC o MINGW, bisogna qui aggiungere: "-std=c++11"
+SET /P FLAGS= oppure spazio vuoto + Invio per confermare ...:  
 @echo -------------------------------------------------------------------------
 
 SET PATH1=%PATH%
@@ -32,6 +32,7 @@ SET WXPP=%WXSQL%\sqlite3secure\%VERSION1%\
 CLS
 @echo on
 :MENU
+COLOR 1F
 TITLE COMPILAZIONE WXSQLITE3
 SET INPUT=7
 SET RES32=-F pe-i386
@@ -54,7 +55,7 @@ CLS
 @echo.
 @echo off
 SET /P INPUT= SCELTA o "0" PER USCIRE o "13" PER TORNARE ALL'INIZIO: 
-SET /P INPUT1= RIPETI SCELTA:
+SET /P INPUT1= RIPETI SCELTA: 
 if %INPUT% == %INPUT1% GOTO VAI
 GOTO MENU
 :VAI

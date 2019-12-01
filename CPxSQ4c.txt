@@ -11,13 +11,13 @@ COLOR 1F
 @echo ATTENZIONE BISOGNA PRIMA AVER COMPILATO CON CPxSQ4a e CPxSQ4b ...
 @echo.
 @echo Inserire il percorso di wxSqlite3 ad esempio 
-SET /P WXSQL= :"C:\wxsqlite3-3.2.1" + Invio per confermare ... 
+SET /P WXSQL= "C:\wxsqlite3-4.4.3" + Invio per confermare ...:  
 @echo.
-@echo Inserire il percorso del compilatore 32 bit ad esempio: "C:\TDM-GCC-32\bin"
-SET /P COMP32= oppure "n" se non installato + Invio ... 
+@echo Inserire il percorso del compilatore 32 bit ad esempio: "C:\TDM-GCC-32\bin"  o "C:\mingw64\bin"
+SET /P COMP32= oppure "n" se non installato + Invio ...: 
 @echo.
-@echo Inserire il percorso del compilatore 64 bit ad esempio: "C:\TDM-GCC-64\bin"
-SET /P COMP64=  oppure "n" se non installato + Invio per confermare ... 
+@echo Inserire il percorso del compilatore 64 bit ad esempio: "C:\TDM-GCC-64\bin" o "C:\mingw64\bin"
+SET /P COMP64= oppure "n" se non installato + Invio per confermare ...: 
 @echo -------------------------------------------------------------------------
 SET PATH1=%PATH%
 SET WXPP=%WXSQL%\sqlite3secure\bin-gcc
@@ -41,6 +41,7 @@ SET OUTLIB64DLL=%WXSQL%\lib\gcc_x64_lib_wxdll
 CLS
 @echo on
 :MENU
+COLOR 1F
 TITLE COMPILAZIONE WXSQLITE3
 SET INPUT=7
 SET RES32=-F pe-i386
@@ -61,8 +62,8 @@ CLS
 @echo Bisogna poi ricordarsi le scelte fatte ad ogni passaggio.
 @echo.
 @echo off
-SET /P INPUT= SCELTA o "0" PER USCIRE o "10" PER TORNARE ALL'INIZIO: 
-SET /P INPUT1= RIPETI SCELTA:
+SET /P INPUT= SCELTA o "0" PER USCIRE o "10" PER TORNARE ALL'INIZIO:  
+SET /P INPUT1= RIPETI SCELTA: 
 if %INPUT% == %INPUT1% GOTO VAI
 GOTO MENU
 :VAI
