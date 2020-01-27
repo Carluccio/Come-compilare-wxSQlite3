@@ -11,13 +11,13 @@ COLOR 1F
 @echo ATTENZIONE BISOGNA PRIMA AVER COMPILATO CON CPxSQ4a e CPxSQ4b ...
 @echo.
 @echo Inserire il percorso di wxSqlite3 ad esempio 
-SET /P WXSQL= "C:\wxsqlite3-4.4.3" + Invio per confermare ...:  
+SET /P WXSQL= "C:\wxsqlite3-4.4.3 + Invio per confermare ...: "
 @echo.
 @echo Inserire il percorso del compilatore 32 bit ad esempio: "C:\TDM-GCC-32\bin"  o "C:\mingw64\bin"
-SET /P COMP32= oppure "n" se non installato + Invio ...: 
+SET /P COMP32= "oppure n se non installato + Invio ...: "
 @echo.
 @echo Inserire il percorso del compilatore 64 bit ad esempio: "C:\TDM-GCC-64\bin" o "C:\mingw64\bin"
-SET /P COMP64= oppure "n" se non installato + Invio per confermare ...: 
+SET /P COMP64= "oppure n se non installato + Invio per confermare ...: "
 @echo -------------------------------------------------------------------------
 SET PATH1=%PATH%
 SET WXPP=%WXSQL%\sqlite3secure\bin-gcc
