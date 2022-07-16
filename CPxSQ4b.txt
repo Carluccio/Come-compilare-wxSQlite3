@@ -93,7 +93,7 @@ if %COMP32% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="dll_release_x32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+mingw32-make -f Makefile config="release_dll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria dinamica 32 release ...
 pause
@@ -105,7 +105,7 @@ if %COMP32% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="dll_debug_x32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+mingw32-make -f Makefile config="debug_dll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria dinamica 32 debug ...
 pause
@@ -117,7 +117,7 @@ if %COMP32% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="release_x32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+mingw32-make -f Makefile config="release_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria statica 32 release ...
 pause
@@ -129,7 +129,7 @@ if %COMP32% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="debug_x32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+mingw32-make -f Makefile config="debug_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria statica 32 debug ...
 pause
@@ -141,7 +141,7 @@ if %COMP64% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="release_x64" CXXFLAGS="%FLAGS%"
+mingw32-make -f Makefile config="release_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria statica 64 release ...
 pause
@@ -153,7 +153,7 @@ if %COMP64% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="debug_x64" CXXFLAGS="%FLAGS%"
+mingw32-make -f Makefile config="debug_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria statica 64 debug ...
 pause
@@ -165,7 +165,7 @@ if %COMP64% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="dll_release_x64" CXXFLAGS="%FLAGS%"
+mingw32-make -f Makefile config="release_dll_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria dinamica 64 release ...
 pause
@@ -177,7 +177,7 @@ if %COMP64% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="dll_debug_x64" CXXFLAGS="%FLAGS%"
+mingw32-make -f Makefile config="debug_dll_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria dinamica 64 debug ...
 pause
@@ -189,7 +189,7 @@ if %COMP32% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="release_wxdll_x32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+mingw32-make -f Makefile config="release_wxdll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria wxdll x32 release ...
 pause
@@ -201,7 +201,7 @@ if %COMP32% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="debug_wxdll_x32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+mingw32-make -f Makefile config="debug_wxdll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria wxdll x32 debug ...
 pause
@@ -213,7 +213,7 @@ if %COMP64% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="release_wxdll_x64" CXXFLAGS="%FLAGS%"
+mingw32-make -f Makefile config="release_wxdll_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria wxdll x64 release ...
 pause
@@ -225,7 +225,7 @@ if %COMP64% == n GOTO MENU
 CD /d %WXPP%
 set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="debug_wxdll_x64" CXXFLAGS="%FLAGS%"
+mingw32-make -f Makefile config="debug_wxdll_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria wxdll x64 debug ...
 pause
