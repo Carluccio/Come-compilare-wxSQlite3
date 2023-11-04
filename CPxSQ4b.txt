@@ -6,6 +6,7 @@ COLOR 1F
 @echo.
 @echo --------------------------------------------------------------------------
 @echo    Carlo Sala v.1  --- Compilazione  wxSqlite3 - Inserimento dati --
+@echo                    Un unico compilatore (64) x32 e x64
 @echo --------------------------------------------------------------------------
 @echo.
 @echo ATTENZIONE BISOGNA PRIMA AVER COMPILATO LE WXWIDGETS ...
@@ -19,18 +20,14 @@ SET /P VERSION1= "build + Invio per confermare ...: "
 @echo Inserire il percorso di wxSqlite3 ad esempio 
 SET /P WXSQL= "C:\wxsqlite3-4.4.3 + Invio per confermare ...: " 
 @echo.
-@echo Inserire il percorso del compilatore 32 bit ad esempio: "C:\TDM-GCC-32\bin" o "C:\mingw32\bin" o "C:\mingw64\bin"
-SET /P COMP32= "oppure n se non installato + Invio ...: "
-@echo.
 @echo Inserire il percorso del compilatore 64 bit ad esempio: "C:\TDM-GCC-64\bin" o "C:\mingw64\bin"
-SET /P COMP64= "oppure n se non installato + Invio per confermare ...: "
+SET /P COMP64= "+ Invio per confermare ...: "
 @echo.
 @echo Inserire CXXFLAGS ad esempio: -std=c++11 e/o: -std=c++14
-@echo Se per compilare wxWidgets (3.x), usi TDM-GCC o MINGW, bisogna qui aggiungere: "-std=c++11"
+@echo Se per compilare wxSqlite3, usi TDM-GCC o MINGW, bisogna qui aggiungere: "-std=c++11"
 SET /P FLAGS= "oppure spazio vuoto + Invio per confermare ...: "
 @echo -------------------------------------------------------------------------
 SET RES32=-F pe-i386
-SET PATH1=%PATH%
 SET WXPP=%WXSQL%\%VERSION1%\
 CLS
 @echo on
@@ -88,144 +85,120 @@ if %INPUT% == 12 ( GOTO 64F )
 GOTO MENU
 :32C
 TITLE COMPILAZIONE WXSQLITE3 libreria dinamica 32 release
-if %COMP32% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="release_dll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+%COMP64%\mingw32-make -f Makefile config="release_dll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria dinamica 32 release ...
 pause
 GOTO MENU
 :32D
 TITLE COMPILAZIONE WXSQLITE3 libreria dinamica 32 debug
-if %COMP32% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="debug_dll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+%COMP64%\mingw32-make -f Makefile config="debug_dll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria dinamica 32 debug ...
 pause
 GOTO MENU
 :32A
 TITLE COMPILAZIONE WXSQLITE3 libreria statica 32 release
-if %COMP32% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="release_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+%COMP64%\mingw32-make -f Makefile config="release_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria statica 32 release ...
 pause
 GOTO MENU
 :32B
 TITLE COMPILAZIONE WXSQLITE3 libreria statica 32 debug
-if %COMP32% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="debug_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+%COMP64%\mingw32-make -f Makefile config="debug_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria statica 32 debug ...
 pause
 GOTO MENU
 :64A
 TITLE COMPILAZIONE WXSQLITE3 libreria statica 64 release
-if %COMP64% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="release_win64" CXXFLAGS="%FLAGS%"
+%COMP64%\mingw32-make -f Makefile config="release_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria statica 64 release ...
 pause
 GOTO MENU
 :64B
 TITLE COMPILAZIONE WXSQLITE3 libreria statica 64 debug
-if %COMP64% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="debug_win64" CXXFLAGS="%FLAGS%"
+%COMP64%\mingw32-make -f Makefile config="debug_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria statica 64 debug ...
 pause
 GOTO MENU
 :64C
 TITLE COMPILAZIONE WXSQLITE3 libreria dinamica 64 release
-if %COMP64% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="release_dll_win64" CXXFLAGS="%FLAGS%"
+%COMP64%\mingw32-make -f Makefile config="release_dll_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria dinamica 64 release ...
 pause
 GOTO MENU
 :64D
 TITLE COMPILAZIONE WXSQLITE3 libreria dinamica 64 debug
-if %COMP64% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="debug_dll_win64" CXXFLAGS="%FLAGS%"
+%COMP64%\mingw32-make -f Makefile config="debug_dll_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria dinamica 64 debug ...
 pause
 GOTO MENU
 :32E
 TITLE COMPILAZIONE WXDLL x32 RELEASE
-if %COMP32% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="release_wxdll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+%COMP64%\mingw32-make -f Makefile config="release_wxdll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria wxdll x32 release ...
 pause
 GOTO MENU
 :32F
 TITLE COMPILAZIONE WXDLL x32 DEBUG
-if %COMP32% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP32%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="debug_wxdll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
+%COMP64%\mingw32-make -f Makefile config="debug_wxdll_win32" CXXFLAGS="%FLAGS%" RESFLAGS="%RES32%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria wxdll x32 debug ...
 pause
 GOTO MENU
 :64E
 TITLE COMPILAZIONE WXDLL x64 RELEASE
-if %COMP64% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="release_wxdll_win64" CXXFLAGS="%FLAGS%"
+%COMP64%\mingw32-make -f Makefile config="release_wxdll_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria wxdll x64 release ...
 pause
 GOTO MENU
 :64F
 TITLE COMPILAZIONE WXDLL x64 DEBUG
-if %COMP64% == n GOTO MENU
 @echo ATTENDI!
 CD /d %WXPP%
-set PATH=%COMP64%;%PATH1%
 @echo ------------------------------------------------------------------------------------
-mingw32-make -f Makefile config="debug_wxdll_win64" CXXFLAGS="%FLAGS%"
+%COMP64%\mingw32-make -f Makefile config="debug_wxdll_win64" CXXFLAGS="%FLAGS%"
 @echo ------------------------------------------------------------------------------------
 @echo Fine compilazione libreria wxdll x64 debug ...
 pause
